@@ -1,0 +1,13 @@
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092  # 指定kafka server的地址，集群配多个，中间，逗号隔开
+    #=============== consumer  =======================
+    consumer:
+      group-id: test-group  #指定默认消费者group id --> 由于在kafka中，同一组中的consumer不会读取到同一个消息，依靠groud.id设置组名
+      auto-offset-reset: earliest  #pffset丢失设置读取策略
+      enable-auto-commit: true     #设置自动提交offset
+      auto-commit-interval: 100    #单位是毫秒提交
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+server:
+  port: 7901
